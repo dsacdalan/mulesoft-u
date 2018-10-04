@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "6e640f2b-d8d6-44d6-b621-686beb9ae369",
+		"name": "1-2 Make calls to an API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://training4-american-ws.cloudhub.io/api/flights?destination=CLE",
+					"protocol": "http",
+					"host": [
+						"training4-american-ws",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"api",
+						"flights"
+					],
+					"query": [
+						{
+							"key": "destination",
+							"value": "CLE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://training4-american-ws.cloudhub.io/api/flights/3",
+					"protocol": "http",
+					"host": [
+						"training4-american-ws",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"api",
+						"flights",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"code\": \"GQ574\",\n  \"price\": 399,\n  \"departureDate\": \"2016/12/20\",\n  \"origin\": \"ORD\",\n  \"destination\": \"SFO\",\n  \"emptySeats\": 200,\n  \"plane\": {\"type\": \"Boeing 747\", \"totalSeats\": 400}\n}"
+				},
+				"url": {
+					"raw": "http://training4-american-ws.cloudhub.io/api/flights",
+					"protocol": "http",
+					"host": [
+						"training4-american-ws",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"api",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"code\": \"GQ574\",\n  \"price\": 399,\n  \"departureDate\": \"2016/12/20\",\n  \"origin\": \"ORD\",\n  \"destination\": \"SFO\",\n  \"emptySeats\": 200,\n  \"plane\": {\"type\": \"Boeing 747\", \"totalSeats\": 400}\n}"
+				},
+				"url": {
+					"raw": "http://training4-american-ws.cloudhub.io/api/flights/3",
+					"protocol": "http",
+					"host": [
+						"training4-american-ws",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"api",
+						"flights",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Secured GET",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "d1374b15c6864c3682ddbed2a247a826"
+					},
+					{
+						"key": "client_secret",
+						"value": "4a87fe7e2e43488c927372AEF981F066"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://training4-american-api.cloudhub.io/flights/3",
+					"protocol": "http",
+					"host": [
+						"training4-american-api",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"flights",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
