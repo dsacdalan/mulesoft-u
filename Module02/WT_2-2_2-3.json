@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "31caa229-9db9-477e-b41d-bf7b2631826a",
+		"name": "2-2 Create a Mule application with flow designer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get fligihts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "americanflightsapp-hoyd.us-e2.cloudhub.io/flights",
+					"host": [
+						"americanflightsapp-hoyd",
+						"us-e2",
+						"cloudhub",
+						"io"
+					],
+					"path": [
+						"flights"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
