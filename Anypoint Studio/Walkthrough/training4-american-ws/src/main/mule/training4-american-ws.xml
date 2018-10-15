@@ -18,6 +18,26 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
 			<db:sql >SELECT *
 FROM american</db:sql>
 		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="4c1b58b1-c53c-4ab2-bca8-8aebc4f05d9b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	ID: payload01.ID,
+	code: (payload01.code1 default "") ++ (payload01.code2 default ""),
+	price: payload01.price,
+	departureDate: payload01.takeOffDate as String,
+	origin: payload01.fromAirport,
+	destination: payload01.toAirport,
+	emptySeats: payload01.seatsAvailable,
+	plane: {
+		"type": payload01.planeType,
+		totalSeats: payload01.totalSeats
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	
 </flow>
 </mule>
