@@ -1,7 +1,7 @@
 {
   "configs": [
-    "training4-american-ws.xml",
-    "american-flights-api.xml"
+    "implementation.xml",
+    "interface.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,
