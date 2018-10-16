@@ -1,0 +1,24 @@
+[
+  {
+    id: "1",
+    firstName: "First",
+    lastName: "Last",
+    address: "123 Street",
+    postal: "54321",
+    country: "USA",
+    miles: 100,
+    creationDate: "2002-10-02T15:00:00Z",
+    "type": "personal"
+  }, 
+  {
+    id: "2",
+    firstName: "First",
+    lastName: "Last",
+    address: "321 Street",
+    postal: "12345",
+    country: "USA",
+    miles: 5000,
+    creationDate: "2002-10-02T15:00:00Z",
+    "type": "business"
+  }
+]

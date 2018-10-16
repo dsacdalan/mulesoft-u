@@ -1,0 +1,143 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/d442bc7f-f072-484e-bb06-182271f71ad1 # 
+version: v1
+title: Accounts API
+
+types: 
+  Account: !include data-types/AccountDataType.raml
+  AccountNoID: !include data-types/AccountNoID.raml
+  AccountType: !include data-types/AccountType.raml
+
+traits:
+  IncludeHeader:
+    headers: 
+      Requester-ID: string
+
+/accounts:
+  get:
+    description: Gets accounts
+    is: [IncludeHeader]
+    queryParameters: 
+      type:
+        required: true
+        type: AccountType
+      name:
+        required: false
+        type: string
+      country:
+        required: false
+        type: string
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: Account[]
+            example: !include examples/AccountsExample.raml
+      400:
+        body: 
+          application/json:
+            example:
+              message: ERROR:\ Could not get accounts
+  post:
+    description: Creates a new account
+    is: [IncludeHeader]
+    body: 
+      application/json:
+        type: AccountNoID[]
+        example: !include examples/AccountNoIDsExample.raml
+    responses: 
+      200:
+        body: 
+          application/json:
+            example:
+              message: Account created (but not really)
+      400:
+        body: 
+          application/json:
+            example:
+              message: ERROR:\ Could not create account
+  /{id}:
+    get:
+      description: Gets an account by ID
+      is: [IncludeHeader]
+      queryParameters: 
+        type:
+          required: false
+          type: AccountType
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: Account
+              example: !include examples/AccountExample.raml
+        400:
+          body:
+            application/json:
+              example:
+                message: ERROR:\ Could not get account
+    put:
+      description: Replaces an account by ID
+      is: [IncludeHeader]
+      queryParameters: 
+        type:
+          required: false
+          type: AccountType
+      body: 
+        application/json:
+          type: AccountNoID
+          example: !include examples/AccountNoIDExample.raml
+      responses: 
+        200:
+          body: 
+            application/json:
+              example:
+                message: account replaced (but not really)
+        400:
+          body:
+            application/json:
+              example:
+                message: ERROR:\ Could not replace account
+    patch:
+      description: Modifies an account by ID
+      is: [IncludeHeader]
+      queryParameters: 
+        type:
+          required: false
+          type: AccountType
+      body: 
+        application/json:
+          type: AccountNoID
+          example: !include examples/AccountNoIDExample.raml
+      responses: 
+        200:
+          body: 
+            application/json:
+              example:
+                message: account modified (but not really)
+        400:
+          body:
+            application/json:
+              example:
+                message: ERROR:\ Could not modifiy account
+    delete:
+      description: Deletes an account by ID
+      is: [IncludeHeader]
+      queryParameters: 
+        type:
+          required: false
+          type: AccountType
+      body: 
+        application/json:
+          type: AccountNoID
+          example: !include examples/AccountNoIDExample.raml
+      responses: 
+        200:
+          body: 
+            application/json:
+              example:
+                message: account deleted (but not really)
+        400:
+          body:
+            application/json:
+              example:
+                message: ERROR:\ Could not delete account

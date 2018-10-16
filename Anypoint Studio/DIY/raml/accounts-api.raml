@@ -6,11 +6,15 @@ types:
   Account: !include data-types/AccountDataType.raml
   AccountNoID: !include data-types/AccountNoID.raml
 
+traits:
+  IncludeHeader:
+    headers: 
+      Requester-ID: string
+
 /accounts:
   get:
     description: Gets accounts
-    headers: 
-      Requester-ID: string
+    is: [IncludeHeader]
     queryParameters: 
       type:
         required: true
@@ -37,8 +41,7 @@ types:
               message: ERROR:\ Could not get accounts
   post:
     description: Creates a new account
-    headers: 
-      Requester-ID: string
+    is: [IncludeHeader]
     body: 
       application/json:
         type: AccountNoID[]
