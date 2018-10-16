@@ -1,0 +1,31 @@
+{
+  "configs": [
+    "accounts-api.xml",
+    "implementation.xml"
+  ],
+  "secureProperties": [],
+  "redeploymentEnabled": true,
+  "name": "diy-accounts",
+  "minMuleVersion": "4.1.1",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedResources": [
+        "api\\.gitignore",
+        "api\\accounts-api.raml",
+        "api\\data-types\\AccountDataType.raml",
+        "api\\data-types\\AccountNoID.raml",
+        "api\\data-types\\AccountType.raml",
+        "api\\examples\\AccountExample.raml",
+        "api\\examples\\AccountNoIDExample.raml",
+        "api\\examples\\AccountNoIDsExample.raml",
+        "api\\examples\\AccountsExample.raml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}
