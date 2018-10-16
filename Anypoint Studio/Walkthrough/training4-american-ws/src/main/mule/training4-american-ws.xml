@@ -6,14 +6,10 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0005abd5-e84b-4c66-a961-3d45f7870a35" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
-	</http:listener-config>
 	<db:config name="Database_Config" doc:name="Database Config" doc:id="ee5412f8-1175-4cb6-90dd-ca42e5fab505" >
 		<db:my-sql-connection host="mudb.learn.mulesoft.com" port="3306" user="mule" password="mule" database="training" />
 	</db:config>
 	<flow name="getFlights" doc:id="83906d26-5570-4b06-b4cd-28cd88bd645a" >
-		<http:listener doc:id="94dc3664-1ca1-401f-9ff7-30323da81890" doc:name="Listener" config-ref="HTTP_Listener_config" path="/flights" allowedMethods="GET"/>
 		<db:select doc:name="Select" doc:id="8b05bab0-778c-4ee0-bb1e-783c66e47c81" config-ref="Database_Config">
 			<db:sql >SELECT *
 FROM american</db:sql>
@@ -41,7 +37,6 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 	
 </flow>
 	<flow name="getFlightsByID" doc:id="83906d26-5570-4b06-b4cd-28cd88bd645a" >
-		<http:listener doc:name="Copy_of_Listener" doc:id="94dc3664-1ca1-401f-9ff7-30323da81890" config-ref="HTTP_Listener_config" path="/flights/{ID}" allowedMethods="GET" />
 		<db:select doc:name="Copy_of_Select" doc:id="c09cc6ca-5d9f-46e7-9cb8-c91107099859" config-ref="Database_Config" >
 			<db:sql >SELECT *
 FROM american
@@ -70,7 +65,6 @@ payload map ( payload01 , indexOfPayload01 ) -> {
 		</ee:transform>
 	</flow>
 	<flow name="postFlight" doc:id="dcf62f64-c3dd-49ef-a8ff-d6e817a95457" >
-		<http:listener doc:name="Listener" doc:id="f404d8de-c327-4666-9147-702dbc7dcaeb" config-ref="HTTP_Listener_config" path="/flights" allowedMethods="POST"/>
 		<set-payload value='{"message": "Flight added (but not really)"}' doc:name="Set Payload" doc:id="49d7b8e1-f9e5-4b38-8af1-dc01814b74f2" />
 	</flow>
 
