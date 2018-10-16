@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="get_account_by_id_output" format="json">
+      <types:example format="json" location="examples/get_account_by_id_output.json"/>
+    </types:type>
+    <types:type name="get_accounts_output" format="json">
+      <types:example format="json" location="examples/get_accounts_output.json"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#e722b5a5-9f29-40ff-9dda-b42d857d52f7">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get_accounts_output"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#dae224c6-5f83-4af3-9a47-b402b23d34cb">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get_accounts_output"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#e28e4af1-63d1-4d0f-bf43-3eaf5cdf287e">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="get_accounts_output"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
