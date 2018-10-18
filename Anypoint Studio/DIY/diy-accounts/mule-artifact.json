@@ -1,7 +1,8 @@
 {
   "configs": [
     "accounts-api.xml",
-    "implementation.xml"
+    "implementation.xml",
+    "proxy.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,
