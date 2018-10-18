@@ -133,7 +133,7 @@ output application/json
             </ee:message>
         </ee:transform>
     </flow>
-    <flow name="delete:\accounts\(id):application\json:accounts-api-config">
+    <flow name="delete:\accounts\(id):accounts-api-config">
         <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0

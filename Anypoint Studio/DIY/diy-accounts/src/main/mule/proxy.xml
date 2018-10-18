@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="proxy-HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b79cfd39-04db-4be0-97df-371bb7cb202b" >
+		<http:listener-connection host="0.0.0.0" port="9090" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="25198647-712f-49a6-a5b0-e4785a0b4434" basePath="/api" >
+		<http:request-connection host="0.0.0.0" port="8081" />
+	</http:request-config>
+	<flow name="getAccountsProxy" doc:id="e50aae23-0af3-4624-a6a9-7aef39188acb" >
+		<http:listener doc:name="Listener" doc:id="612f85e3-2997-4d0b-84c1-80264047ac80" config-ref="proxy-HTTP_Listener_config" path="/getAccounts"/>
+		<http:request method="GET" doc:name="Request" doc:id="08b83948-1216-491d-a5b4-11b56082ed92" config-ref="HTTP_Request_configuration" path="/accounts">
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy"
+}]]]></http:headers>
+			<http:query-params ><![CDATA[#[output applicaton/java
+---
+{
+	"type" : "personal"
+}]]]></http:query-params>
+		</http:request>
+	</flow>
+	<flow name="postAccountsProxy" doc:id="65493460-1ef6-4f76-ba39-2cfd7d579820" >
+		<http:listener doc:name="Listener" doc:id="c214a63d-9f2e-4cb5-be50-fcec667d8d7f" config-ref="proxy-HTTP_Listener_config" path="/postAccounts"/>
+		<http:request method="POST" doc:name="Request" doc:id="a1dfa9d7-c6a3-4891-b8c4-a5a038f7377a" config-ref="HTTP_Request_configuration" path="/accounts">
+			<http:body ><![CDATA[[{"firstName":"First","lastName":"Last","address":"123 Street","postal":"54321","country":"USA","miles":100,"type":"personal"},{"firstName":"First","lastName":"Last","address":"321 Street","postal":"12345","country":"USA","miles":5000,"type":"business"}]]]></http:body>
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy",
+	"Content-Type" : "application/json"
+}]]]></http:headers>
+		</http:request>
+	</flow>
+	<flow name="getAccountsByIDProxy" doc:id="1acbed59-e4b9-42aa-b538-ba8b36c15e20" >
+		<http:listener doc:name="Listener" doc:id="652fc12e-4b4a-4d15-89b6-069c976936b1" config-ref="proxy-HTTP_Listener_config" path="/getAccountsByID"/>
+		<http:request method="GET" doc:name="Request" doc:id="ead0c3c6-793b-4ded-9a44-e02f6d7c76a1" config-ref="HTTP_Request_configuration" path="/accounts/4400">
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy"
+}]]]></http:headers>
+		</http:request>
+	</flow>
+	<flow name="deleteAccountsByIDProxy" doc:id="05d19864-c178-4672-b4c3-2cb443846c73" >
+		<http:listener doc:name="Listener" doc:id="a503c05e-7a29-4ac2-8a57-b92eec810dc8" config-ref="proxy-HTTP_Listener_config" path="/deleteAccountsByID"/>
+		<http:request method="DELETE" doc:name="Request" doc:id="6183d253-bdf3-40f0-a7da-54c47e3379d8" config-ref="HTTP_Request_configuration" path="/accounts/4400">
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy"
+}]]]></http:headers>
+		</http:request>
+	</flow>
+	<flow name="putAccountsByIDProxy" doc:id="374ebd99-db9b-406e-a09a-f202399058e5" >
+		<http:listener doc:name="Listener" doc:id="8be3883d-9e40-4508-ab9d-cd2f6b954a94" config-ref="proxy-HTTP_Listener_config" path="/putAccountsByID"/>
+		<http:request method="PUT" doc:name="Request" doc:id="abb014b3-34f7-4007-b5dd-878d826ee652" config-ref="HTTP_Request_configuration" path="/accounts/1">
+			<http:body ><![CDATA[{
+  "firstName": "First",
+  "lastName": "Last",
+  "address": "123 Street",
+  "postal": "54321",
+  "country": "USA",
+  "miles": 100,
+  "type": "personal"
+}]]></http:body>
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy",
+	"Content-Type" : "application/json"
+}]]]></http:headers>
+		</http:request>
+	</flow>
+	<flow name="patchAccountsByIDProxy" doc:id="f4d7db7f-9d78-48d7-8232-ee5035e165fc" >
+		<http:listener doc:name="Listener" doc:id="d7b4725d-b552-41a3-a889-a97645564784" config-ref="proxy-HTTP_Listener_config" path="/patchAccountsByID" />
+		<http:request method="PATCH" doc:name="Request" doc:id="90e45ab4-82aa-4479-be53-7ec6ca4993c7" config-ref="HTTP_Request_configuration" path="/accounts/1" >
+			<http:body ><![CDATA[{
+  "firstName": "First",
+  "lastName": "Last",
+  "address": "123 Street",
+  "postal": "54321",
+  "country": "USA",
+  "miles": 100,
+  "type": "personal"
+}]]></http:body>
+			<http:headers ><![CDATA[#[output applicaton/java
+---
+{
+	"Requester-ID" : "proxy",
+	"Content-Type" : "application/json"
+}]]]></http:headers>
+		</http:request>
+	</flow>
+</mule>
